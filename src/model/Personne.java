@@ -2,6 +2,7 @@ package model;
 
 import model.enums.Role;
 
+
 public abstract class Personne {
     private String nom;
     private String prenom;
@@ -67,4 +68,6 @@ public abstract class Personne {
                 ", role=" + role +
                 '}';
     }
+
+
 }

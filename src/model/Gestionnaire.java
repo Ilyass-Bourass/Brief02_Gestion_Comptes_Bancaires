@@ -8,8 +8,8 @@ public class Gestionnaire extends Personne {
     private String Uuid;
     private String departement;
 
-    public Gestionnaire(String nom, String prenom, String email, String motPasse, Role role ,String department) {
-        super(nom, prenom, email, motPasse, role);
+    public Gestionnaire(String nom, String prenom, String email, String motPasse,String department) {
+        super(nom, prenom, email, motPasse,Role.GESTIONNAIE);
         this.Uuid = UUID.randomUUID().toString();
         this.departement = department;
     }
@@ -37,4 +37,7 @@ public class Gestionnaire extends Personne {
                 ", departement='" + departement + '\'' +
                 '}';
     }
+
+
+
 }
