@@ -15,6 +15,8 @@ public class AuthService {
         Gestionnaire gestionnaire = new Gestionnaire("Admin", "Admin", "a", "a", "Direction");
         this.gestionnaires.add(gestionnaire);
         this.clients = new ArrayList<>();
+        Client client = new Client("Client", "Client", "c", "c");
+        this.clients.add(client);
     }
     
     public List<Gestionnaire> getAllGestionnaires() {

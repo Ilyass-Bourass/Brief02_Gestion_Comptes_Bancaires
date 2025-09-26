@@ -7,12 +7,12 @@ public class Main {
     public static void main(String[] args) {
         try {
             
-            GestionnaireService gestionnaireService = new GestionnaireService();
             AuthService authService = new AuthService();
+            GestionnaireService gestionnaireService = new GestionnaireService(authService);
 
             AuthController authController = new AuthController(authService, gestionnaireService);
 
-            MenuPrincipal menuPrincipal = new MenuPrincipal(authController);
+            MenuPrincipal menuPrincipal = new MenuPrincipal(authController, authService);
 
             System.out.println("Bienvenue dans le système de gestion bancaire!");
             menuPrincipal.afficherMenuPrincipal();
