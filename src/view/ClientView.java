@@ -43,8 +43,8 @@ public class ClientView {
                 case 4:
                     System.out.println("=== Filtrer mes transactions ===");
                     System.out.println("1 : Par type");
-                    System.out.println("1 : Par date");
-                    System.out.println("1 : Par montant");
+                    System.out.println("2 : Par date");
+                    System.out.println("3 : Par montant");
                     System.out.println("choisisez votre choix");
                     int choixFiltre = sc.nextInt();
                     if(choixFiltre == 1){
