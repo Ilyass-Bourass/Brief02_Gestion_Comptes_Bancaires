@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="brief02_Gestion_compte_Bancaire:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/brief02_Gestion_compte_Bancaire_jar</output-path>
+    <root id="archive" name="brief02_Gestion_compte_Bancaire.jar">
+      <element id="module-output" name="brief02_Gestion_compte_Bancaire" />
+    </root>
+  </artifact>
+</component>
