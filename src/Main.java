@@ -1,6 +1,7 @@
 import controller.AuthController;
 import service.AuthService;
 import service.GestionnaireService;
+import service.CompteService;
 import view.MenuPrincipal;
 
 public class Main {
@@ -9,10 +10,11 @@ public class Main {
             
             AuthService authService = new AuthService();
             GestionnaireService gestionnaireService = new GestionnaireService(authService);
+            CompteService compteService = new CompteService();
 
-            AuthController authController = new AuthController(authService, gestionnaireService);
+            AuthController authController = new AuthController(authService, gestionnaireService, compteService);
 
-            MenuPrincipal menuPrincipal = new MenuPrincipal(authController, authService);
+            MenuPrincipal menuPrincipal = new MenuPrincipal(authController, authService, compteService);
 
             System.out.println("Bienvenue dans le système de gestion bancaire!");
             menuPrincipal.afficherMenuPrincipal();

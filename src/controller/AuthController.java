@@ -4,6 +4,7 @@ import model.Client;
 import model.Gestionnaire;
 import service.AuthService;
 import service.GestionnaireService;
+import service.CompteService;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +12,12 @@ import java.util.Optional;
 public class AuthController {
     private AuthService authService;
     private GestionnaireService gestionnaireService;
+    private CompteService compteService;
 
-    public AuthController(AuthService authService, GestionnaireService gestionnaireService) {
+    public AuthController(AuthService authService, GestionnaireService gestionnaireService, CompteService compteService) {
         this.authService = authService;
         this.gestionnaireService = gestionnaireService;
+        this.compteService = compteService;
     }
     
     public List<Gestionnaire> listerGestionnaires() {

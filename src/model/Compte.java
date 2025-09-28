@@ -8,16 +8,25 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public class Compte {
+    private String idClient;
     private String idCompte;
     private TypeCompte typeCompte;
     private BigDecimal solde;
-    private  ArrayList<Transaction> transactions;
 
-    public Compte(TypeCompte typeCompte, BigDecimal solde, ArrayList<Transaction> transactions) {
+    public Compte(String idClient, TypeCompte typeCompte, BigDecimal solde) {
+        this.idClient = idClient;
+        this.typeCompte = typeCompte;
+        this.solde = solde;
         this.idCompte = UUID.randomUUID().toString();
         this.typeCompte = typeCompte;
         this.solde = solde;
-        this.transactions = transactions;
+    }
+
+    public String getIdClient() {
+        return idClient;
+    }
+    public void setIdClient(String idClient) {
+        this.idClient = idClient;
     }
 
     public String getIdCompte() {
@@ -44,21 +53,15 @@ public class Compte {
         this.solde = solde;
     }
 
-    public ArrayList<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(ArrayList<Transaction> transactions) {
-        this.transactions = transactions;
-    }
+    
 
     @Override
     public String toString() {
         return "Compte{" +
+                "idCClient='" + idClient + '\'' +
                 "idCompte='" + idCompte + '\'' +
                 ", typeCompte=" + typeCompte +
                 ", solde=" + solde +
-                ", transactions=" + transactions +
                 '}';
     }
 }

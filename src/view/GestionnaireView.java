@@ -27,7 +27,7 @@ public class GestionnaireView {
             System.out.println("║ 2. Gestions des comptes                    ║");
             System.out.println("║ 3. Gestions des transactions               ║");
             System.out.println("║ 4. Consulter les transactions d'un client  ║");
-            System.out.println("║ 5. Consulter les transactions suspectes     ║");
+            System.out.println("║ 5. Consulter les transactions suspectes    ║");
             System.out.println("║ 6. Déconnexion                             ║");
             System.out.println("╚════════════════════════════════════════════╝");
             System.out.println("Gestionnaire connecté: " + gestionnaireConnecte.getNom() + " " + gestionnaireConnecte.getPrenom());
@@ -73,8 +73,7 @@ public class GestionnaireView {
                     int choixCompte = sc.nextInt();
                     switch (choixCompte) {
                         case 1:
-                            // ajouterCompte();
-                            System.out.println("Fonctionnalité non encore implémentée.");
+                            ajouterCompte();
                             break;
                         case 2:
                             // modifierCompte();
@@ -85,8 +84,7 @@ public class GestionnaireView {
                             System.out.println("Fonctionnalité non encore implémentée.");
                             break;
                         case 4:
-                            // afficherListeComptes();
-                            System.out.println("Fonctionnalité non encore implémentée.");
+                            afficherListeComptes();
                             break;
                         default:
                             System.out.println("Option invalide!");
@@ -120,13 +118,18 @@ public class GestionnaireView {
                 case 4:
                     System.out.println("Consulter les transactions d'un client");
                     System.out.println("Saisir l'ID du client:");
-                    int idClient = sc.nextInt();
-                   // gestionnaireController.consulterTransactionsClient(idClient);
+                    sc.nextLine(); // Consommer le retour à la ligne
+                    String idClientTransaction = sc.nextLine();
+                    afficherListeComptes();
                     System.out.println("Fonctionnalité non encore implémentée.");
                     break;
-                case 5 :
-                System.out.println("Consulter les transactions suspectes");
-                break;
+                case 5:
+                    System.out.println("Consulter les transactions suspectes");
+                    break;
+                case 6:
+                    System.out.println("Déconnexion en cours...");
+                    continuer = false;
+                    break;
                 default:
                     System.out.println("Option invalide!");
             }
@@ -162,5 +165,65 @@ public class GestionnaireView {
     private void afficherListeClients() {
         System.out.println("\n=== Liste des clients ===");
         gestionnaireController.afficherListeClients();
+    }
+
+    private void ajouterCompte() {
+        System.out.println("\n=== Ajout d'un nouveau compte ===");
+        sc.nextLine();
+
+        System.out.println("Liste des clients disponibles:");
+        gestionnaireController.afficherListeClients();
+
+        System.out.print("\nID du client (copiez l'ID depuis la liste ci-dessus): ");
+        String idClient = sc.nextLine();
+
+        System.out.println("Types de compte disponibles:");
+        System.out.println("1. COURANT");
+        System.out.println("2. EPARGNE");
+        System.out.print("Choisissez le type de compte (1 ou 2): ");
+        int choixType = sc.nextInt();
+        
+        String typeCompte;
+        if (choixType == 1) {
+            typeCompte = "COURANT";
+        } else if (choixType == 2) {
+            typeCompte = "EPARGNE";
+        } else {
+            System.out.println("Type de compte invalide!");
+            return;
+        }
+
+        System.out.print("Solde initial (ex: 1000.50): ");
+        double soldeDouble = sc.nextDouble();
+        
+        try {
+            java.math.BigDecimal solde = java.math.BigDecimal.valueOf(soldeDouble);
+            gestionnaireController.ajouterCompte(idClient, typeCompte, solde);
+        } catch (Exception e) {
+            System.out.println("Erreur: " + e.getMessage());
+        }
+    }
+
+    private void afficherListeComptes() {
+        System.out.println("\n=== Gestion des comptes ===");
+        System.out.println("1. Afficher tous les comptes");
+        System.out.println("2. Afficher les comptes d'un client spécifique");
+        System.out.print("Choisissez une option: ");
+        
+        int choix = sc.nextInt();
+        
+        switch (choix) {
+            case 1:
+                gestionnaireController.afficherTousLesComptes();
+                break;
+            case 2:
+                sc.nextLine(); 
+                System.out.print("ID du client: ");
+                String idClient = sc.nextLine();
+                gestionnaireController.afficherComptesClient(idClient);
+                break;
+            default:
+                System.out.println("Option invalide!");
+        }
     }
 }
